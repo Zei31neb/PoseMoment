@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoseMoment - Contact</title>
+    
+    <style>
+        body {
+          margin: 0;
+          padding: 20px;
+          background-color: #ffd2e1;
+          font-family: 'Playfair Display', serif;
+          display: flex;
+          flex-direction: column;  
+          align-items: center;     
+        }
+
+
+        .valikko-säiliö {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          max-width: 1200px;
+          margin-top: 20px;
+          margin-bottom: 40px;
+          position: relative;
+        }
+
+
+        .ylapalkki-logo {
+          position: absolute;
+          left: -600px;     
+          height: 280px;     
+          width: auto;
+          margin-top: 150px;   
+        }
+
+
+        .kapseli-valikko {
+          display: inline-flex;
+          border: 2px solid #000000;
+          border-radius: 30px;
+          overflow: hidden;
+          background-color: #ffffff;
+          padding: 0;
+          margin: 0;
+        }
+
+
+        .kapseli-valikko a {
+          display: block;
+          padding: 16px 35px;
+          color: #000000;
+          text-decoration: none;
+          font-size: 22px;
+          font-weight: 500;
+          letter-spacing: 2px;
+          text-align: center;
+          border-right: 2px solid #000000; 
+        }
+
+
+        .kapseli-valikko a:last-child {
+          border-right: none;
+        }
+
+
+        .kapseli-valikko a:hover {
+          font-weight: bold;
+          background-color: #f0f0f0;
+        }
+
+
+        .sisalto-laatikko {
+          max-width: 850px;
+          width: 100%;
+          padding: 0 20px;
+          box-sizing: border-box;
+          margin-top: 10px;
+          margin-left: auto; 
+          margin-right: auto;
+        }
+
+
+        h1 {
+          font-size: 40px;
+          text-align: center;
+          letter-spacing: 2px;
+          margin-bottom: 30px;
+          font-weight: bold;
+        }
+
+
+        p {
+          font-size: 34px;
+          text-align: left;
+          line-height: 1.5;
+          margin-bottom: 40px;
+          letter-spacing: 1px;
+        }
+
+
+        .lomake-ryhma {
+          display: flex;
+          align-items: center;
+          margin-bottom: 25px;
+          width: 100%;
+          max-width: 600px;
+        }
+
+
+        .lomake-ryhma label {
+          font-size: 34px;
+          font-weight: bold;
+          width: 180px; 
+          text-align: left;
+        }
+
+
+        .lomake-ryhma input, .lomake-ryhma textarea {
+          flex: 1;
+          padding: 10px;
+          border: 2px solid #000000;
+          background-color: #ffffff;
+          font-family: Arial, sans-serif;
+          font-size: 20px;
+          box-sizing: border-box;
+        }
+
+
+        .lomake-ryhma textarea {
+          height: 90px;
+          resize: none; 
+        }
+
+
+        .lahetys-alue {
+          width: 100%;
+          max-width: 1000px;
+          display: flex;
+          justify-content: center; 
+          margin-top: 40px;
+        }
+
+
+        .valkoinen-send-nappi {
+          background-color: #ffffff;
+          color: #000000;
+          border: 2px solid #000000;
+          border-radius: 20px;
+          padding: 14px 55px;
+          font-family: 'Playfair Display', serif;
+          font-size: 22px;
+          letter-spacing: 4px;
+          cursor: pointer;
+          box-shadow: 4px 4px 0px #000000;
+        }
+
+
+        .valkoinen-send-nappi:hover {
+          background-color: #f0f0f0;
+        }
+
+        @media screen and (max-width: 768px) {
+          
+          .valikko-säiliö {
+            flex-direction: column !important;
+            margin-top: 10px !important;
+            margin-bottom: 20px !important;
+          }
+
+          .ylapalkki-logo {
+            position: static !important;
+            margin-top: 0 !important;
+            margin-bottom: 20px !important;
+            height: 140px !important; 
+            width: auto !important;
+          }
+
+          .kapseli-valikko {
+            display: flex !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            border: 2px solid #000000 !important;
+            border-radius: 25px !important;
+          }
+
+          .kapseli-valikko a {
+            flex: 1 !important;
+            padding: 10px 2px !important; 
+            font-size: 11px !important; 
+            letter-spacing: 0px !important;
+            border-right: 2px solid #000000 !important;
+            border-bottom: none !important;
+          }
+
+          .kapseli-valikko a:last-child {
+            border-right: none !important;
+          }
+
+          h1 {
+            font-size: 28px !important;
+            margin-bottom: 20px !important;
+          }
+
+          p {
+            font-size: 16px !important;
+            text-align: center !important;
+            margin-bottom: 30px !important;
+          }
+
+          .lomake-ryhma {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            margin-bottom: 15px !important;
+          }
+
+          .lomake-ryhma label {
+            width: 100% !important;
+            font-size: 18px !important;
+            margin-bottom: 5px !important;
+          }
+
+          .lomake-ryhma input, .lomake-ryhma textarea {
+            width: 100% !important;
+            font-size: 16px !important;
+          }
+
+          .valkoinen-send-nappi {
+            font-size: 18px !important;
+            padding: 12px 40px !important;
+            width: 100% !important;
+            max-width: 280px !important;
+          }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="valikko-säiliö">
+        <img src="img/PoseMoment.jpg" alt="PoseMoment" class="ylapalkki-logo">
+        <nav class="kapseli-valikko">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="skills.html">Skills</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+
+    <div class="sisalto-laatikko">
+        <h1>Contact Me</h1>
+        
+        <p>If you want to give feedback about my PoseMoment project or ask anything about my design process, you can contact me here.</p>
+
+
+        <form action="#" onsubmit="alert('Message sent! Thank you :)'); return false;">
+            
+            <div class="lomake-ryhma">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+
+
+            <div class="lomake-ryhma">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+
+
+            <div class="lomake-ryhma">
+                <label for="message">Message</label>
+                <textarea id="message" required></textarea>
+            </div>
+
+
+            <div class="lahetys-alue">
+                <button type="submit" class="valkoinen-send-nappi">Send</button>
+            </div>
+
+
+        </form>
+    </div>
+</body>
+</html>
+ 

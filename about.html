@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoseMoment - About</title>
+    
+    <style>
+        body {
+          margin: 0;
+          padding: 20px;
+          background-color: #ffd2e1;
+          font-family: 'Playfair Display', serif;
+          display: flex;
+          flex-direction: column;  
+          align-items: center;     
+        }
+
+        .ylapalkki-säiliö {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          max-width: 1200px;
+          margin-top: 20px;
+          margin-bottom: 60px; 
+          position: relative; 
+        }
+
+        .ylapalkki-logo {
+          position: absolute;
+          left: -600px;     
+          height: 280px;     
+          width: auto;
+          margin-top: 150px;   
+        }
+
+        .kapseli-valikko {
+          display: inline-flex;
+          border: 2px solid #000000;
+          border-radius: 30px;
+          overflow: hidden;
+          background-color: #ffffff;
+          padding: 0;
+          margin: 0;
+        }
+
+        .kapseli-valikko a {
+          display: block;
+          padding: 16px 35px;
+          color: #000000;
+          text-decoration: none;
+          font-size: 22px;
+          font-weight: 500;
+          letter-spacing: 2px;
+          text-align: center;
+          border-right: 2px solid #000000; 
+        }
+
+        .kapseli-valikko a:last-child {
+          border-right: none;
+        }
+
+        .kapseli-valikko a:hover {
+          font-weight: bold;
+          background-color: #f0f0f0;
+        }
+
+        .sisalto-laatikko {
+          max-width: 1100px;
+          width: 100%;
+          padding: 0 40px;
+          box-sizing: border-box;
+          margin-top: 10px;
+          margin-left: auto; 
+          margin-right: auto;
+        }
+
+        h1 {
+          font-size: 40px;
+          text-align: center;
+          letter-spacing: 2px;
+          margin-bottom: 30px;
+          font-weight: bold;
+        }
+
+        p {
+          font-size: 30px;
+          text-align: center; 
+          line-height: 1.6;
+          margin-bottom: 30px;
+          letter-spacing: 1px;
+        }
+
+        ul {
+          list-style-type: none; 
+          padding: 0;
+          margin: 0;
+        }
+
+        ul li {
+          font-size: 30px;
+          line-height: 1.6;
+          letter-spacing: 1px;
+          margin-bottom: 10px;
+          text-align: left;
+        }
+
+        @media screen and (max-width: 768px) {
+          
+          .ylapalkki-säiliö {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-top: 10px !important;
+            margin-bottom: 20px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+
+          .ylapalkki-logo {
+            position: static !important; 
+            margin: 0 auto 20px auto !important;
+            height: 140px !important; 
+            width: auto !important;
+            display: block !important; 
+          }
+
+          .kapseli-valikko {
+            display: flex !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            border: 2px solid #000000 !important;
+            border-radius: 25px !important;
+            box-sizing: border-box !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+
+          .kapseli-valikko a {
+            flex: 1 !important;
+            padding: 10px 0 !important; 
+            font-size: 11px !important; 
+            letter-spacing: 0px !important;
+            border-right: 2px solid #000000 !important;
+            border-bottom: none !important;
+          }
+
+          .kapseli-valikko a:last-child {
+            border-right: none !important;
+          }
+
+          .sisalto-laatikko {
+            padding: 0 15px !important;
+          }
+          
+          h1 {
+            font-size: 28px !important;
+            margin-bottom: 20px !important;
+          }
+
+          p {
+            font-size: 16px !important;
+            text-align: center !important;
+            margin-bottom: 25px !important;
+          }
+
+          ul li {
+            font-size: 16px !important;
+            text-align: center !important;
+            margin-bottom: 12px !important;
+          }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="ylapalkki-säiliö">
+        <img src="img/PoseMoment.jpg" alt="PoseMoment" class="ylapalkki-logo">
+        
+        <nav class="kapseli-valikko">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="skills.html">Skills</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+
+
+
+    <div class="sisalto-laatikko">
+        <h1>ABOUT US</h1>
+        
+        <p><strong><em>PoseMoment</em></strong> was born from the need to create a simple, fun way to take photos directly in your browser. I wanted to design a digital photobooth that works entirely app-free and is easy for everyone to use — from youth and adults to content creators and event organizers.</p>
+
+
+
+
+        <h1 style="margin-top: 50px;"><em>How it works is simple:</em></h1>
+        
+        <ul>
+            <li><em>1. Choose a layout</em></li>
+            <li><em>2. Press Start</em></li>
+            <li><em>3. The countdown begins</em></li>
+            <li><em>4. The camera snaps the photos automatically</em></li>
+            <li><em>5. Your final photos appear in a filmstrip</em></li>
+            <li><em>6. Download your filmstrip or generate a custom GIF</em></li>
+        </ul>
+    </div>
+</body>
+</html>
+
