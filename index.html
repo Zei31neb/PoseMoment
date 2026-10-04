@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- TÄMÄ RIVI PUUTTUI: Kertoo puhelimelle, että kyseessä on responsiivinen sivu -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoseMoment</title>
     
     <style>
@@ -9,11 +11,12 @@
           margin: 0;
           padding: 20px;
           background-color: #ffd2e1;
-          font-family: Playfair Display;
+          font-family: 'Playfair Display', serif;
           display: flex;
           flex-direction: column;  
           align-items: center;     
         }
+
 
         .valikko-säiliö {
           display: flex;
@@ -24,6 +27,7 @@
           margin-bottom: 40px;
         }
 
+
         .kapseli-valikko {
           display: inline-flex;
           border: 2px solid #000000;
@@ -33,6 +37,7 @@
           padding: 0;
           margin: 0;
         }
+
 
         .kapseli-valikko a {
           display: block;
@@ -46,14 +51,17 @@
           border-right: 2px solid #000000; 
         }
 
+
         .kapseli-valikko a:last-child {
           border-right: none;
         }
+
 
         .kapseli-valikko a:hover {
           font-weight: bold;
           background-color: #f0f0f0;
         }
+
 
         h1 {
           margin-top: 20px;
@@ -61,17 +69,36 @@
           font-size: 40px;
           text-align: center;
           letter-spacing: 4px; 
-          font-family: Playfair Display; 
+          font-family: 'Playfair Display', serif; 
         }
 
-       p{
-        font-family: Playfair Display;
-        font-size: 34px;
-        text-align: center;
-       }
+
+        p {
+          font-family: 'Playfair Display', serif;
+          font-size: 34px;
+          text-align: center;
+          max-width: 1000px;
+        }
+
+        /* Tietokoneella logo on iso ja tyylikäs */
+        .paasivu-logo {
+          width: 950px;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+        }
+
+        /* ----------------------------------------------------
+           UUSI TÄYDELLINEN RESPONSIVISUUS ETUSIVULLE
+           ---------------------------------------------------- */
         @media screen and (max-width: 768px) {
           
-          .ylapalkki-säiliö, .valikko-säiliö {
+          /* Käännetään järjestys niin, että logo nousee puhelimella ekaksi */
+          body {
+            padding: 15px !important;
+          }
+
+          .valikko-säiliö {
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
@@ -80,16 +107,40 @@
             margin-bottom: 20px !important;
             width: 100% !important;
             box-sizing: border-box !important;
+            order: 2; /* Siirtää valikon logon alapuolelle puhelimella */
           }
 
-          .ylapalkki-logo {
+          /* Pakotetaan logo valikon yläpuolelle keskelle ja pienennetään pikkuruudulle */
+          .paasivu-logo {
+            order: 1; /* Nostaa logon ensimmäiseksi puhelimella */
             position: static !important; 
             margin: 0 auto 20px auto !important;
-            height: 140px !important; 
-            width: auto !important;
+            width: 100% !important;
+            max-width: 200px !important; /* Siisti pienennetty koko puhelimelle */
+            height: auto !important;
             display: block !important; 
           }
 
+          /* Kaikki tekstit logon ja valikon alapuolelle */
+          h1 {
+            order: 3;
+            font-size: 28px !important;
+            margin-top: 20px !important;
+            margin-bottom: 15px !important;
+            text-align: center !important;
+          }
+
+          p {
+            order: 4;
+            font-size: 16px !important;
+            text-align: center !important;
+            line-height: 1.5 !important;
+            margin-bottom: 20px !important;
+            padding: 0 10px !important;
+            box-sizing: border-box !important;
+          }
+
+          /* Pakotetaan valikkokapseli pysymään puhelimen ruudun sisällä */
           .kapseli-valikko {
             display: flex !important;
             width: 100% !important;
@@ -101,9 +152,10 @@
             margin: 0 !important;
           }
 
+          /* Jaetaan tila tasan kaikille 5 linkille yhdelle riville vierekkäin */
           .kapseli-valikko a {
             flex: 1 !important;
-            padding: 10px 0 !important; 
+            padding: 12px 0 !important; 
             font-size: 11px !important; 
             letter-spacing: 0px !important;
             border-right: 2px solid #000000 !important;
@@ -112,21 +164,6 @@
 
           .kapseli-valikko a:last-child {
             border-right: none !important;
-          }
-
-          h1, .welcome-text, body > h1 {
-            font-size: 28px !important;
-            margin-bottom: 20px !important;
-            text-align: center !important;
-          }
-
-          p, .infoteksti {
-            font-size: 16px !important;
-            text-align: center !important;
-            line-height: 1.5 !important;
-            margin-bottom: 20px !important;
-            padding: 0 10px !important;
-            box-sizing: border-box !important;
           }
         }
 
@@ -144,12 +181,14 @@
         </nav>
     </div>
 
-    <h1><bold>Welcome to</bold></h1>
-    <img src="img/PoseMoment.jpg" alt="PoseMoment" style='width: 950px; height=:auto;'>
+    <!-- Lisätty luokka .paasivu-logo ja korjattu leveyden hallinta -->
+    <img src="img/PoseMoment.jpg" alt="PoseMoment" class="paasivu-logo">
+
+    <h1><strong>Welcome to</strong></h1>
+    
     <p>Your moments, your way. <strong><em>PoseMoment</em></strong> is the easy-to-use photobooth that goes wherever you do. <br>Come try it and start capturing memories today!</p>
+    
     <p>Click on <strong>'Projects'</strong> to launch the photobooth and start capturing memories :)</p>
 
 </body>
 </html>
-
-
