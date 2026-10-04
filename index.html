@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- TÄMÄ RIVI PUUTTUI: Kertoo puhelimelle, että kyseessä on responsiivinen sivu -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoseMoment</title>
     
@@ -80,7 +79,6 @@
           max-width: 1000px;
         }
 
-        /* Tietokoneella logo on iso ja tyylikäs */
         .paasivu-logo {
           width: 950px;
           height: auto;
@@ -88,12 +86,8 @@
           margin: 0 auto;
         }
 
-        /* ----------------------------------------------------
-           UUSI TÄYDELLINEN RESPONSIVISUUS ETUSIVULLE
-           ---------------------------------------------------- */
         @media screen and (max-width: 768px) {
           
-          /* Käännetään järjestys niin, että logo nousee puhelimella ekaksi */
           body {
             padding: 15px !important;
           }
@@ -107,21 +101,19 @@
             margin-bottom: 20px !important;
             width: 100% !important;
             box-sizing: border-box !important;
-            order: 2; /* Siirtää valikon logon alapuolelle puhelimella */
+            order: 2; 
           }
 
-          /* Pakotetaan logo valikon yläpuolelle keskelle ja pienennetään pikkuruudulle */
           .paasivu-logo {
-            order: 1; /* Nostaa logon ensimmäiseksi puhelimella */
+            order: 1; 
             position: static !important; 
             margin: 0 auto 20px auto !important;
             width: 100% !important;
-            max-width: 200px !important; /* Siisti pienennetty koko puhelimelle */
+            max-width: 200px !important; 
             height: auto !important;
             display: block !important; 
           }
 
-          /* Kaikki tekstit logon ja valikon alapuolelle */
           h1 {
             order: 3;
             font-size: 28px !important;
@@ -140,7 +132,6 @@
             box-sizing: border-box !important;
           }
 
-          /* Pakotetaan valikkokapseli pysymään puhelimen ruudun sisällä */
           .kapseli-valikko {
             display: flex !important;
             width: 100% !important;
@@ -152,7 +143,6 @@
             margin: 0 !important;
           }
 
-          /* Jaetaan tila tasan kaikille 5 linkille yhdelle riville vierekkäin */
           .kapseli-valikko a {
             flex: 1 !important;
             padding: 12px 0 !important; 
@@ -181,8 +171,7 @@
         </nav>
     </div>
 
-    <!-- Lisätty luokka .paasivu-logo ja korjattu leveyden hallinta -->
-    <img src="img/PoseMoment.jpg" alt="PoseMoment" class="paasivu-logo">
+    <img src="PoseMoment.jpg" alt="PoseMoment" class="paasivu-logo">
 
     <h1><strong>Welcome to</strong></h1>
     
