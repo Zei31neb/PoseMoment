@@ -18,21 +18,20 @@
 
         .ylapalkki-säiliö {
           display: flex;
-          justify-content: center; /* Pitää valikon täydellisesti keskellä ruutua */
+          justify-content: center; /* Pitää valikon keskellä ruutua */
           align-items: center;
-          width: 100%;
-          max-width: 1200px;
+          width: 100%;             /* Ottaa nyt KOKO ruudun leveyden käyttöön */
           margin-top: 20px;
           margin-bottom: 40px; 
-          position: relative; /* TÄRKEÄ: Tämä toimii logon ankkurina */
-          min-height: 200px;  /* Varmistaa, että yläpalkki pysyy riittävän korkeana logolle */
+          position: relative; 
+          min-height: 200px;  
         }
 
         .ylapalkki-logo {
-          position: absolute; /* Irrottaa logon ja sallii vapaan liikuttelun */
-          left: 0;            /* Liimaa logon aivan yläpalkin vasempaan reunaan */
-          top: 50%;           /* Siirtää logon puoliväliin pystysuunnassa */
-          transform: translateY(-50%); /* Keskittää logon pystysuunnassa täydellisesti */
+          position: absolute; 
+          left: 20px;         /* Ottaa kiinni koko ruudun vasemmasta reunasta (jätetään 20px ilmarako) */
+          top: 50%;           
+          transform: translateY(-50%); 
           height: 200px; 
           width: auto;
           display: block;
@@ -120,12 +119,12 @@
             justify-content: center !important;
             margin-top: 10px !important;
             margin-bottom: 20px !important;
-            min-height: auto !important; /* Poistaa pystynoston mobiilissa */
+            min-height: auto !important; 
           }
 
           .ylapalkki-logo {
             position: static !important; 
-            transform: none !important; /* Poistaa pystykekeskityksen mobiilissa */
+            transform: none !important; 
             margin: 0 auto 20px auto !important;
             height: 100px !important; 
             width: auto !important;
