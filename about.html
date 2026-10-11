@@ -18,22 +18,21 @@
 
         .ylapalkki-säiliö {
           display: flex;
-          flex-direction: column;
+          justify-content: center; 
           align-items: center;
           width: 100%;
           max-width: 1200px;
-          margin-top: 10px;
-          margin-bottom: 40px;
-          box-sizing: border box; 
-    
+          margin-top: 20px;
+          margin-bottom: 40px; 
+          position: relative;
         }
 
         .ylapalkki-logo {
-          height: 120px; 
+          position: absolute;
+          left: 20px;     
+          height: 180px; 
           width: auto;
           display: block;
-          align-self: flex-start;
-          margin-bottom: 20px;
         }
 
         .kapseli-valikko {
@@ -44,6 +43,7 @@
           background-color: #ffffff;
           padding: 0;
           margin: 0;
+          z-index: 10; 
         }
 
         .kapseli-valikko a {
@@ -72,7 +72,7 @@
           width: 100%;
           padding: 0 40px;
           box-sizing: border-box;
-          margin-top: 10px;
+          margin-top: 50px; 
           margin-left: auto; 
           margin-right: auto;
         }
@@ -122,6 +122,7 @@
           }
 
           .ylapalkki-logo {
+            position: static !important; 
             margin: 0 auto 20px auto !important;
             height: 100px !important; 
             width: auto !important;
@@ -154,6 +155,7 @@
 
           .sisalto-laatikko {
             padding: 0 15px !important;
+            margin-top: 10px !important;
           }
           
           h1 {
@@ -207,4 +209,3 @@
     </div>
 </body>
 </html>
-
