@@ -16,27 +16,26 @@
           align-items: center;     
         }
 
-
         .ylapalkki-säiliö {
           display: flex;
           justify-content: center;
           align-items: center;
           width: 100%;
-          max-width: 1200px;
-          margin-top: 20px;
-          margin-bottom: 60px; 
+          margin-top: 12px;
+          margin-bottom: -15px; 
           position: relative; 
+          min-height: 90px;
         }
-
 
         .ylapalkki-logo {
-          position: absolute;
-          left: -600px;     
-          height: 280px;     
+          position: absolute; 
+          left: 85px;         
+          top: 125%;           
+          transform: translateY(-50%); 
+          height: 270px; 
           width: auto;
-          margin-top: 150px;   
+          display: block;
         }
-
 
         .kapseli-valikko {
           display: inline-flex;
@@ -46,8 +45,8 @@
           background-color: #ffffff;
           padding: 0;
           margin: 0;
+          z-index: 10;
         }
-
 
         .kapseli-valikko a {
           display: block;
@@ -61,28 +60,24 @@
           border-right: 2px solid #000000; 
         }
 
-
         .kapseli-valikko a:last-child {
           border-right: none;
         }
-
 
         .kapseli-valikko a:hover {
           font-weight: bold;
           background-color: #f0f0f0;
         }
 
-
         .sisalto-laatikko {
           max-width: 800px;
           width: 100%;
           padding: 0 20px;
           box-sizing: border-box;
-          margin-top: 20px;
+          margin-top: 50px;
           margin-left: auto; 
           margin-right: auto;
         }
-
 
         h1 {
           font-size: 40px;
@@ -92,7 +87,6 @@
           font-weight: bold;
         }
 
-
         p {
           font-size: 34px;
           text-align: left; 
@@ -101,13 +95,11 @@
           letter-spacing: 1px;
         }
 
-
         ul {
           list-style-type: none; 
           padding: 0;
           margin: 0;
         }
-
 
         ul li {
           font-size: 34px;
@@ -117,13 +109,12 @@
           text-align: left;
         }
 
-
         ul li::before {
           content: "•";
           margin-right: 8px;
         }
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1150px) {
           
           .ylapalkki-säiliö {
             display: flex !important;
@@ -132,14 +123,14 @@
             justify-content: center !important;
             margin-top: 10px !important;
             margin-bottom: 20px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
+            min-height: auto !important; 
           }
 
           .ylapalkki-logo {
             position: static !important; 
+            transform: none !important; 
             margin: 0 auto 20px auto !important;
-            height: 140px !important; 
+            height: 100px !important; 
             width: auto !important;
             display: block !important; 
           }
@@ -147,12 +138,7 @@
           .kapseli-valikko {
             display: flex !important;
             width: 100% !important;
-            max-width: 100% !important;
-            border: 2px solid #000000 !important;
             border-radius: 25px !important;
-            box-sizing: border-box !important;
-            padding: 0 !important;
-            margin: 0 !important;
           }
 
           .kapseli-valikko a {
@@ -160,14 +146,13 @@
             padding: 10px 0 !important; 
             font-size: 11px !important; 
             letter-spacing: 0px !important;
-            border-right: 2px solid #000000 !important;
-            border-bottom: none !important;
-          }
-
-          .kapseli-valikko a:last-child {
-            border-right: none !important;
           }
           
+          .sisalto-laatikko {
+            padding: 0 15px !important;
+            margin-top: 10px !important;
+          }
+
           h1 {
             font-size: 28px !important;
             margin-bottom: 20px !important;
@@ -190,7 +175,7 @@
 <body>
     
     <div class="ylapalkki-säiliö">
-    <img src="PoseMoment.jpg" alt="PoseMoment" class="paasivu-logo">
+        <img src="PoseMoment.jpg" alt="PoseMoment" class="ylapalkki-logo">
         
         <nav class="kapseli-valikko">
           <a href="index.html">Home</a>
@@ -201,12 +186,10 @@
         </nav>
     </div>
 
-
-    <div class="sisalto-laatikko">
+'    <div class="sisalto-laatikko">
         <h1>Skills used in PoseMoment</h1>
         
         <p>Here are the main skills and tools I used while creating my photobooth concept and the website pages.</p>
-
 
         <ul>
             <li>HTML (structure)</li>
@@ -219,4 +202,5 @@
     </div>
 </body>
 </html>
+
 
