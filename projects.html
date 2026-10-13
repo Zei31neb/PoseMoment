@@ -16,27 +16,22 @@
           align-items: center;     
         }
 
-
         .ylapalkki-säiliö {
           display: flex;
-          justify-content: center;
-          align-items: center;
+          justify-content: space-between; 
+          align-items: center;            
           width: 100%;
           max-width: 1200px;
           margin-top: 20px;
           margin-bottom: 60px; 
-          position: relative; 
+          gap: 30px;                      
         }
-
 
         .ylapalkki-logo {
-          position: absolute;
-          left: -10px;     
-          height: 200px;     
+          height: 130px;     
           width: auto;
-          margin-top: 100px;   
+          object-fit: contain;
         }
-
 
         .kapseli-valikko {
           display: inline-flex;
@@ -47,7 +42,6 @@
           padding: 0;
           margin: 0;
         }
-
 
         .kapseli-valikko a {
           display: block;
@@ -61,17 +55,14 @@
           border-right: 2px solid #000000; 
         }
 
-
         .kapseli-valikko a:last-child {
           border-right: none;
         }
-
 
         .kapseli-valikko a:hover {
           font-weight: bold;
           background-color: #f0f0f0;
         }
-
 
         .infoteksti {
           font-size: 38px;      
@@ -81,7 +72,6 @@
           max-width: 1100px;
           text-transform: lowercase; 
         }
-
 
         .layout-rivi {
           display: flex;
@@ -94,7 +84,6 @@
           flex-wrap: wrap;
         }
 
-
         .layout-sarake {
           display: flex;
           flex-direction: column;
@@ -102,14 +91,12 @@
           gap: 20px;
         }
 
-
         .tahti-koriste {
           font-size: 85px;    
           color: #707070;
           line-height: 1.2;
           user-select: none;
         }
-
 
         .filminauha {
           width: 165px;         
@@ -125,12 +112,10 @@
           transition: transform 0.2s;
         }
 
-
         .ruutu {
           background-color: #ffffff;
           flex: 1;
         }
-
 
         .filmi-teksti {
           background-color: #000000;
@@ -142,12 +127,10 @@
           letter-spacing: 1px;
         }
 
-
         .valittu-nauha {
           border-color: #ff0055;
           transform: scale(1.03);
         }
-
 
         .musta-nappi {
           background-color: #000000;
@@ -180,12 +163,13 @@
             margin-bottom: 20px !important;
             width: 100% !important;
             box-sizing: border-box !important;
+            gap: 15px !important;
           }
 
           .ylapalkki-logo {
             position: static !important; 
-            margin: 0 auto 20px auto !important;
-            height: 140px !important; 
+            margin: 0 auto !important;
+            height: 120px !important; 
             width: auto !important;
             display: block !important; 
           }
@@ -233,7 +217,7 @@
 <body>
     
     <div class="ylapalkki-säiliö">
-    <img src="PoseMoment.jpg" alt="PoseMoment" class="paasivu-logo">
+        <img src="PoseMoment.jpg" alt="PoseMoment" class="ylapalkki-logo">
         
         <nav class="kapseli-valikko">
           <a href="index.html">Home</a>
@@ -244,13 +228,10 @@
         </nav>
     </div>
 
-
     <div class="infoteksti">choose your layout, strike a pose, and capture memories that matter</div>
-
 
     <div class="layout-rivi">
         <div class="tahti-koriste">✦<br>✦<br>✦</div>
-
 
         <div class="layout-sarake">
             <div class="filminauha" id="nauha-A">
@@ -263,7 +244,6 @@
             <button class="musta-nappi" onclick="valitsePohja('nauha-A')">CHOOSE</button>
         </div>
 
-
         <div class="layout-sarake">
             <div class="filminauha" id="nauha-B">
                 <div class="ruutu"></div>
@@ -274,7 +254,6 @@
             <button class="musta-nappi" onclick="valitsePohja('nauha-B')">CHOOSE</button>
         </div> 
 
-
         <div class="layout-sarake">
             <div class="filminauha" id="nauha-C">
                 <div class="ruutu"></div>
@@ -284,10 +263,8 @@
             <button class="musta-nappi" onclick="valitsePohja('nauha-C')">CHOOSE</button>
         </div>
 
-
         <div class="tahti-koriste">✦<br>✦<br>✦</div>
     </div>
-
 
     <script>
         function valitsePohja(nauhaId) {
