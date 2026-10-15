@@ -15,7 +15,7 @@
           flex-direction: column;  
           align-items: center;     
         }
-
+  
         .valikko-säiliö {
           display: flex;
           justify-content: center;
@@ -35,7 +35,7 @@
           margin: 0;
         }
 
-        .kapseli-valikko a {
+         .kapseli-valikko a {
           display: block;
           padding: 16px 35px;
           color: #000000;
@@ -51,14 +51,14 @@
           border-right: none;
         }
 
-        .kapseli-valikko a:hover {
+         .kapseli-valikko a:hover {
           font-weight: bold;
           background-color: #f0f0f0;
         }
 
         h1 {
           margin-top: 20px;
-          margin-bottom: 15px;
+          margin-bottom: 0px; 
           font-size: 40px;
           text-align: center;
           letter-spacing: 4px; 
@@ -72,15 +72,15 @@
           max-width: 1000px;
         }
 
-        .paasivu-logo {
+          .paasivu-logo {
           width: 100%;
           max-width: 950px;
           height: auto;
           display: block;
-          margin: 0 auto;
+          margin: -100px auto -110px auto; 
         }
 
-        @media screen and (max-width: 1150px) {
+           @media screen and (max-width: 1150px) {
           body {
             padding: 15px !important;
           }
@@ -97,10 +97,10 @@
             order: 1; 
           }
 
-          .paasivu-logo {
+        .paasivu-logo {
             order: 3; 
             position: static !important; 
-            margin: 0 auto 20px auto !important;
+            margin: -30px auto -30px auto !important; 
             width: 100% !important;
             max-width: 400px !important; 
             height: auto !important;
@@ -115,7 +115,7 @@
             text-align: center !important;
           }
 
-          p {
+           p {
             order: 4;
             font-size: 16px !important;
             text-align: center !important;
@@ -136,7 +136,7 @@
             margin: 0 !important;
           }
 
-          .kapseli-valikko a {
+         .kapseli-valikko a {
             flex: 1 !important;
             padding: 12px 0 !important; 
             font-size: 11px !important; 
@@ -152,8 +152,7 @@
     </style>
 </head>
 <body>
-    
-    <div class="valikko-säiliö">
+     <div class="valikko-säiliö">
         <nav class="kapseli-valikko">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
