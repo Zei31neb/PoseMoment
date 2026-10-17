@@ -58,7 +58,7 @@
 
         h1 {
           margin-top: 20px;
-          margin-bottom: 20px; 
+          margin-bottom: 15px;
           font-size: 40px;
           text-align: center;
           letter-spacing: 4px; 
@@ -67,24 +67,19 @@
 
         p {
           font-family: 'Playfair Display', serif;
-          font-size: 26px;
+          font-size: 34px;
           text-align: center;
           max-width: 1000px;
-          margin-top: 0px;
-          margin-bottom: 25px;
-          line-height: 1.4;
-        }
-
-        .nostettu-teksti {
-          margin-top: 20px !important; 
+          margin-top: 15px;
+          margin-bottom: 15px;
         }
 
         .paasivu-logo {
           width: 100%;
-          max-width: 850px; 
+          max-width: 950px; 
           height: auto;
           display: block;
-          margin: 20 auto 40px auto; 
+          margin: 0 auto;
         }
 
         @media screen and (max-width: 1150px) {
@@ -93,59 +88,14 @@
           }
 
           .valikko-säiliö {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
             margin-top: 10px !important;
             margin-bottom: 20px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            order: 1; 
-          }
-
-          .paasivu-logo {
-            order: 3; 
-            position: static !important; 
-            margin: 0 auto 20px auto !important; 
-            width: 100% !important;
-            max-width: 350px !important; 
-            height: auto !important;
-            display: block !important; 
-          }
-
-          h1 {
-            order: 2;
-            font-size: 28px !important;
-            margin-top: 20px !important;
-            margin-bottom: 15px !important;
-            text-align: center !important;
-          }
-
-          p {
-            order: 4;
-            font-size: 16px !important;
-            text-align: center !important;
-            line-height: 1.5 !important;
-            margin-top: 0px !important;
-            margin-bottom: 20px !important;
-            padding: 0 10px !important;
-            box-sizing: border-box !important;
-          }
-
-          .nostettu-teksti {
-            margin-top: 0px !important;
           }
 
           .kapseli-valikko {
             display: flex !important;
             width: 100% !important;
-            max-width: 100% !important;
-            border: 2px solid #000000 !important;
             border-radius: 25px !important;
-            box-sizing: border-box !important;
-            padding: 0 !important;
-            margin: 0 !important;
           }
 
           .kapseli-valikko a {
@@ -153,12 +103,19 @@
             padding: 12px 0 !important; 
             font-size: 11px !important; 
             letter-spacing: 0px !important;
-            border-right: 2px solid #000000 !important;
-            border-bottom: none !important;
           }
 
-          .kapseli-valikko a:last-child {
-            border-right: none !important;
+          h1 {
+            font-size: 28px !important;
+          }
+
+          .paasivu-logo {
+            max-width: 100% !important;
+          }
+
+          p {
+            font-size: 16px !important;
+            line-height: 1.5 !important;
           }
         }
     </style>
@@ -174,13 +131,12 @@
           <a href="contact.html">Contact</a>
         </nav>
     </div>
-    
-    <h1><strong>Welcome to</strong></h1>
 
-    <img src="PoseMoment-logo).jpg" alt="PoseMoment" class="paasivu-logo">
+    <h1><strong>Welcome to</strong></h1>
     
-    <p class="nostettu-teksti">Your moments, your way. <strong><em>PoseMoment</em></strong> is the easy-to-use photobooth that goes wherever you do. <br>Come try it and start capturing memories today!</p>
+    <img src="img/PoseMoment-logo).jpg" alt="PoseMoment" class="paasivu-logo">
     
+    <p>Your moments, your way. <strong><em>PoseMoment</em></strong> is the easy-to-use photobooth that goes wherever you do. <br>Come try it and start capturing memories today!</p>
     <p>Click on <strong>'Projects'</strong> to launch the photobooth and start capturing memories :)</p>
 
 </body>
