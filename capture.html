@@ -97,6 +97,7 @@
           height: 400px;
           background-color: #ffffff;
           border: 1px solid #000000;
+          overflow: hidden;
         }
 
         .kamera-ruutu video {
@@ -118,12 +119,28 @@
           display: none;
           position: absolute;
           top: 0;
+          left: 0;
           width: 100%;
+          height: 100%;
           text-align: center;
           font-size: 140px;
           line-height: 400px;
           color: #ffffff;
           text-shadow: 0 0 10px #000000;
+          z-index: 5;
+        }
+
+        /* Kameran välähdysefekti */
+        .valahdys {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #ffffff;
+          opacity: 0;
+          z-index: 6;
+          pointer-events: none;
         }
 
         .aika-nappi {
@@ -189,6 +206,7 @@
           line-height: 68px;
           font-size: 22px;
           color: #707070;
+          overflow: hidden;
         }
 
         .pikkukuva img {
@@ -196,6 +214,7 @@
           height: 100%;
           object-fit: cover;
           display: block;
+          transform: scaleX(-1);
         }
 
         @media screen and (max-width: 1150px) {
@@ -272,6 +291,7 @@
                 <video id="video" autoplay playsinline muted></video>
                 <div class="viesti" id="viesti">Starting camera...</div>
                 <div class="lasku" id="lasku"></div>
+                <div class="valahdys" id="valahdys"></div>
             </div>
 
             <div>
@@ -281,7 +301,7 @@
             </div>
 
             <div>
-                <button class="valkoinen-nappi" id="aloita-nappi" onclick="aloitaKuvaus()" disabled>Start Capture<br></button>
+                <button class="valkoinen-nappi" id="aloita-nappi" onclick="aloitaKuvaus()" disabled>Start Capture</button>
                 <button class="musta-nappi" id="next-nappi" onclick="seuraava()" disabled>Next</button>
             </div>
         </div>
@@ -302,109 +322,41 @@
         var canvas = document.getElementById("canvas");
         var viesti = document.getElementById("viesti");
         var lasku = document.getElementById("lasku");
+        var valahdys = document.getElementById("valahdys");
         var aloitaNappi = document.getElementById("aloita-nappi");
         var nextNappi = document.getElementById("next-nappi");
 
-        var kuvia = 4;
-        var valittuAika = 3;
-        var sekunnit = 0;
+        var kuvia = parseInt(localStorage.getItem("kuvienMaara")) || 4;
+        var kuvausaika = 3; 
         var kuvaNumero = 0;
-        var ajastin;
-        var otetutKuvat = [];
+        var kuvatutDataUrlit = [];
 
-        var haku = window.location.search;
-        var layoutNimi = "Layout A";
-
-        if (haku == "?layout=B") {
-            kuvia = 3;
-            layoutNimi = "Layout B";
-        } else if (haku == "?layout=C") {
-            kuvia = 2;
-            layoutNimi = "Layout C";
+        for (var i = 0; i < 4; i++) {
+            var kuvaElementti = document.getElementById("kuva" + i);
+            if (kuvaElementti) {
+                if (i < kuvia) {
+                    kuvaElementti.style.display = "block";
+                } else {
+                    kuvaElementti.style.display = "none";
+                }
+            }
         }
 
-        document.getElementById("layout-teksti").innerHTML = "Selected layout:<br>" + layoutNimi + " (" + kuvia + " pose)";
-        aloitaNappi.innerHTML = "Start Capture<br>(" + kuvia + " photos)";
-
-        for (var i = kuvia; i < 4; i++) {
-            document.getElementById("kuva" + i).style.display = "none";
-        }
-
-        navigator.mediaDevices.getUserMedia({ video: true })
+        navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 400 }, audio: false })
             .then(function(stream) {
                 video.srcObject = stream;
                 viesti.style.display = "none";
                 aloitaNappi.disabled = false;
             })
-            .catch(function() {
-                viesti.innerHTML = "Camera blocked. Please allow the camera.";
+            .catch(function(err) {
+                viesti.innerHTML = "Camera error: Please allow camera access.";
+                console.log(err);
             });
 
-        function valitseAika(aika) {
-            valittuAika = aika;
+        function valitseAika(sekunnit) {
+            kuvausaika = sekunnit;
             document.getElementById("aika-3").classList.remove("valittu");
             document.getElementById("aika-5").classList.remove("valittu");
-            document.getElementById("aika-" + aika).classList.add("valittu");
+            document.getElementById("aika-" + sekunnit).classList.add("valittu");
         }
 
-        function aloitaKuvaus() {
-            otetutKuvat = [];
-            kuvaNumero = 0;
-
-            for (var i = 0; i < kuvia; i++) {
-                document.getElementById("kuva" + i).innerHTML = i + 1;
-            }
-
-            aloitaNappi.disabled = true;
-            nextNappi.disabled = true;
-            aloitaLasku();
-        }
-
-        function aloitaLasku() {
-            sekunnit = valittuAika;
-            lasku.innerHTML = sekunnit;
-            lasku.style.display = "block";
-            ajastin = setInterval(laskeAlas, 1000);
-        }
-
-        function laskeAlas() {
-            sekunnit = sekunnit - 1;
-
-            if (sekunnit > 0) {
-                lasku.innerHTML = sekunnit;
-            } else {
-                clearInterval(ajastin);
-                lasku.style.display = "none";
-                otaKuva();
-                kuvaNumero = kuvaNumero + 1;
-
-                if (kuvaNumero < kuvia) {
-                    setTimeout(aloitaLasku, 1000);
-                } else {
-                    aloitaNappi.innerHTML = "Retake<br>(" + kuvia + " photos)";
-                    aloitaNappi.disabled = false;
-                    nextNappi.disabled = false;
-                }
-            }
-        }
-
-        function otaKuva() {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            var ctx = canvas.getContext("2d");
-            ctx.translate(canvas.width, 0);
-            ctx.scale(-1, 1);
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-            var kuva = canvas.toDataURL("image/jpeg");
-            otetutKuvat.push(kuva);
-            document.getElementById("kuva" + kuvaNumero).innerHTML = '<img src="' + kuva + '">';
-        }
-
-        function seuraava() {
-            sessionStorage.setItem("posemoment-kuvat", JSON.stringify(otetutKuvat));
-            window.location.href = "result.html";
-        }
-    </script>
-</body>
-</html>
