@@ -79,13 +79,41 @@
           align-items: center;
         }
 
+        .status-rivi {
+          display: flex;
+          gap: 15px;
+          margin-bottom: 15px;
+          width: 500px;
+        }
+
         .layout-status {
           background-color: #000000;
           color: #ffffff;
-          padding: 6px 20px;
-          font-size: 16px;
+          padding: 6px 15px;
+          font-size: 15px;
           letter-spacing: 1px;
-          margin-bottom: 15px;
+          flex: 1;
+          text-align: center;
+        }
+
+        .ajastin-valinta-palkki {
+          background-color: #000000;
+          color: #ffffff;
+          padding: 6px 15px;
+          font-size: 15px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .ajastin-valinta-palkki select {
+          font-family: Playfair Display, serif;
+          font-size: 14px;
+          padding: 2px 5px;
+          border: 1px solid #ffffff;
+          background-color: #ffffff;
+          color: #000000;
+          cursor: pointer;
         }
 
         .kamera-ruutu {
@@ -104,13 +132,15 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
+          background-color: #ffffff;
         }
 
         #countdown-overlay {
           position: absolute;
-          font-size: 90px;
+          font-size: 110px;
           font-weight: bold;
-          color: #000000;
+          color: #ffffff; 
+          text-shadow: 3px 3px 0px #000000; 
           display: none;
           z-index: 5;
         }
@@ -146,11 +176,6 @@
           font-size: 18px;
           cursor: pointer;
           box-shadow: 4px 4px 0px #000000;
-          transition: transform 0.1s, box-shadow 0.1s;
-        }
-
-        .start-nappi:hover {
-          background-color: #f0f0f0;
         }
 
         .kuvanauha-puoli {
@@ -167,6 +192,16 @@
           background-color: #ffffff;
           overflow: hidden;
           box-shadow: 3px 3px 0px #000000;
+        }
+
+        .otettu-kuva-ruutu img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        #hidden-canvas {
+          display: none;
         }
 
         .tahti-koriste {
@@ -197,26 +232,87 @@
     <div class="studio-säiliö">
         
         <div class="kuvaus-puoli">
-            <div class="layout-status" id="layout-title">Selected layout: Layout A (4 pose)</div>
+            <div class="status-rivi">
+                <div class="layout-status" id="layout-title">Selected layout: Loading...</div>
+                
+                <div class="ajastin-valinta-palkki">
+                    <label for="timer-select">Timer:</label>
+                    <select id="timer-select">
+                        <option value="3">3s</option>
+                        <option value="5">5s</option>
+                        <option value="10">10s</option>
+                    </select>
+                </div>
+            </div>
             
             <div class="kamera-ruutu">
                 <video id="webcam" autoplay playsinline></video>
                 <div id="countdown-overlay">3</div>
             </div>
 
-            <div class="ajastin-palkki">Time to pose: <span id="timer-number">3</span></div>
+            <div class="ajastin-palkki">Time to pose: <span id="timer-number">--</span></div>
             
-            <button class="start-nappi" id="start-btn">Start Capture<br>(4 photos)</button>
+            <button class="start-nappi" id="start-btn" onclick="kaynnistaKuvaus()">Start Capture</button>
         </div>
 
-        <div class="kuvanauha-puoli" id="preview-container">
-            <div class="otettu-kuva-ruutu"></div>
-            <div class="otettu-kuva-ruutu"></div>
-            <div class="otettu-kuva-ruutu"></div>
-            <div class="otettu-kuva-ruutu"></div>
-        </div>
+        <div class="kuvanauha-puoli" id="preview-container"></div>
 
     </div>
 
-</body>
-</html>
+    <canvas id="hidden-canvas" width="640" height="480"></canvas>
+
+    <script>
+        const video = document.getElementById('webcam');
+        const canvas = document.getElementById('hidden-canvas');
+        const startBtn = document.getElementById('start-btn');
+        const countdownOverlay = document.getElementById('countdown-overlay');
+        const timerNumber = document.getElementById('timer-number');
+        const previewContainer = document.getElementById('preview-container');
+        const timerSelect = document.getElementById('timer-select');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const valittuLayout = urlParams.get('layout') || 'A';
+        
+        let kuvienMaara = 4;
+        if (valittuLayout === 'B') kuvienMaara = 3;
+        if (valittuLayout === 'C') kuvienMaara = 2;
+
+        document.getElementById('layout-title').innerText = `Layout ${valittuLayout} (${kuvienMaara} pose)`;
+        startBtn.innerHTML = `Start Capture<br>(${kuvienMaara} photos)`;
+
+        for (let i = 0; i < kuvienMaara; i++) {
+            const ruutu = document.createElement('div');
+            ruutu.className = 'otettu-kuva-ruutu';
+            ruutu.id = `ruutu-${i}`;
+            previewContainer.appendChild(ruutu);
+        }
+
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                video.srcObject = stream;
+            })
+            .catch(function(error) {
+                alert("Please allow camera access to take photos :)");
+            });
+        }
+
+        let nykyinenKuva = 0;
+
+        function kaynnistaKuvaus() {
+            startBtn.disabled = true;
+            timerSelect.disabled = true; 
+            nykyinenKuva = 0;
+            otetaanSeuraavaKuva();
+        }
+
+        function otetaanSeuraavaKuva() {
+            if (nykyinenKuva >= kuvienMaara) {
+                setTimeout(function() {
+                    alert("All photos captured! Moving to the next section...");
+                }, 1500);
+                return;
+            }
+
+            let sekunnit = parseInt(timerSelect.value);
+            
