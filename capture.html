@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoseMoment - Capture</title>
-    
+
     <style>
         body {
           margin: 0;
           padding: 20px;
           background-color: #ffd2e1;
-          font-family: Playfair Display, serif;
+          font-family: Playfair Display;
           display: flex;
           flex-direction: column;  
           align-items: center;     
@@ -23,7 +23,7 @@
           width: 100%;             
           margin-top: 10px;
           margin-bottom: 15px;  
-          position: relative; 
+          position: relative;
         }
 
         .ylapalkki-logo {
@@ -62,153 +62,192 @@
           border-right: none;
         }
 
-        .studio-säiliö {
+        .kapseli-valikko a:hover {
+          font-weight: bold;
+          background-color: #f0f0f0;
+        }
+
+        .paaosa {
           display: flex;
           justify-content: center;
           align-items: flex-start;
-          gap: 60px;
-          max-width: 1200px;
-          width: 100%;
-          margin-top: 70px;
-          position: relative;
+          gap: 40px;
+          margin-top: 50px;
         }
 
-        .kuvaus-puoli {
+        .kamera-sarake {
           display: flex;
           flex-direction: column;
           align-items: center;
+          gap: 14px;
         }
 
-        .status-rivi {
-          display: flex;
-          gap: 15px;
-          margin-bottom: 15px;
-          width: 500px;
-        }
-
-        .layout-status {
+        .musta-laatikko {
           background-color: #000000;
           color: #ffffff;
-          padding: 6px 15px;
-          font-size: 15px;
-          letter-spacing: 1px;
-          flex: 1;
+          font-size: 14px;
+          letter-spacing: 3px;
+          padding: 6px 14px;
           text-align: center;
         }
 
-        .ajastin-valinta-palkki {
-          background-color: #000000;
-          color: #ffffff;
-          padding: 6px 15px;
-          font-size: 15px;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
-        .ajastin-valinta-palkki select {
-          font-family: Playfair Display, serif;
-          font-size: 14px;
-          padding: 2px 5px;
-          border: 1px solid #ffffff;
-          background-color: #ffffff;
-          color: #000000;
-          cursor: pointer;
-        }
-
         .kamera-ruutu {
-          width: 500px;
-          height: 375px;
-          border: 2px solid #000000;
-          background-color: #ffffff;
           position: relative;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 4px 4px 0px #000000;
-        }
-
-        #webcam {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+          width: 640px;
+          height: 400px;
           background-color: #ffffff;
-        }
-
-        #countdown-overlay {
-          position: absolute;
-          font-size: 110px;
-          font-weight: bold;
-          color: #ffffff; 
-          text-shadow: 3px 3px 0px #000000; 
-          display: none;
-          z-index: 5;
-        }
-
-        .ajastin-palkki {
-          background-color: #000000;
-          color: #ffffff;
-          padding: 8px 25px;
-          font-size: 18px;
-          margin-top: 20px;
-          margin-bottom: 20px;
-          letter-spacing: 1px;
-          display: flex;
-          align-items: center;
-        }
-
-        .ajastin-palkki span {
-          background-color: #ffffff;
-          color: #000000;
-          padding: 2px 12px;
-          margin-left: 15px;
-          font-weight: bold;
           border: 1px solid #000000;
         }
 
-        .start-nappi {
-          background-color: #ffffff;
-          color: #000000;
-          border: 2px solid #000000;
-          border-radius: 20px;
-          padding: 12px 45px;
-          font-family: Playfair Display, serif;
-          font-size: 18px;
-          cursor: pointer;
-          box-shadow: 4px 4px 0px #000000;
-        }
-
-        .kuvanauha-puoli {
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
-          width: 140px;
-        }
-
-        .otettu-kuva-ruutu {
-          width: 140px;
-          height: 105px;
-          border: 2px solid #000000;
-          background-color: #ffffff;
-          overflow: hidden;
-          box-shadow: 3px 3px 0px #000000;
-        }
-
-        .otettu-kuva-ruutu img {
+        .kamera-ruutu video {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transform: scaleX(-1);
         }
 
-        #hidden-canvas {
-          display: none;
-        }
-
-        .tahti-koriste {
-          font-size: 60px;
-          color: #707070;
+        .viesti {
           position: absolute;
-          user-select: none;
+          top: 45%;
+          width: 100%;
+          text-align: center;
+          font-size: 20px;
+        }
+
+        .lasku {
+          display: none;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          text-align: center;
+          font-size: 140px;
+          line-height: 400px;
+          color: #ffffff;
+          text-shadow: 0 0 10px #000000;
+        }
+
+        .aika-nappi {
+          background-color: #000000;
+          color: #ffffff;
+          border: 2px solid #000000;
+          font-family: Playfair Display;
+          font-size: 14px;
+          padding: 6px 14px;
+          cursor: pointer;
+        }
+
+        .valittu {
+          background-color: #ffffff;
+          color: #000000;
+        }
+
+        .valkoinen-nappi {
+          background-color: #ffffff;
+          border: 1px solid #000000;
+          border-radius: 10px;
+          box-shadow: 4px 4px 0 #000000;
+          padding: 12px 28px;
+          font-family: Playfair Display;
+          font-size: 16px;
+          letter-spacing: 3px;
+          cursor: pointer;
+        }
+
+        .musta-nappi {
+          background-color: #000000;
+          color: #ffffff;
+          border: none;
+          padding: 12px 30px;
+          font-family: Playfair Display;
+          font-size: 18px;
+          letter-spacing: 2px;
+          cursor: pointer;
+          text-transform: uppercase;
+        }
+
+        .musta-nappi:hover {
+          background-color: #71797E;
+        }
+
+        button:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+
+        .pikkukuvat {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .pikkukuva {
+          width: 110px;
+          height: 68px;
+          border: 1px solid #000000;
+          background-color: #ffe9f0;
+          text-align: center;
+          line-height: 68px;
+          font-size: 22px;
+          color: #707070;
+        }
+
+        .pikkukuva img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        @media screen and (max-width: 1150px) {
+          body {
+            padding: 15px;
+          }
+          
+          .ylapalkki-säiliö {
+            flex-direction: column !important; 
+            gap: 15px;
+            margin-bottom: 20px !important;
+          }
+
+          .ylapalkki-logo {
+            position: static !important; 
+            max-width: 150px;
+            margin: 0 auto !important;
+            margin-top: 0 !important;
+          }
+
+          .kapseli-valikko {
+            display: flex !important;
+            width: 100% !important;
+            border-radius: 25px !important;
+          }
+
+          .kapseli-valikko a {
+            flex: 1 !important;
+            padding: 12px 0 !important; 
+            font-size: 11px !important; 
+            letter-spacing: 0px !important;
+          }
+
+          .paaosa {
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+          }
+
+          .kamera-ruutu {
+            width: 100%;
+            height: 300px;
+          }
+
+          .lasku {
+            font-size: 90px;
+            line-height: 300px;
+          }
+
+          .pikkukuvat {
+            flex-direction: row;
+          }
         }
     </style>
 </head>
@@ -216,6 +255,7 @@
 
     <div class="ylapalkki-säiliö">
         <img src="Logo.jpg" alt="PoseMoment" class="ylapalkki-logo">
+        
         <nav class="kapseli-valikko">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
@@ -225,94 +265,150 @@
         </nav>
     </div>
 
-    <div class="tahti-koriste" style="top: 280px; left: 80px;">✦</div>
-    <div class="tahti-koriste" style="top: 200px; right: 350px;">✦</div>
-    <div class="tahti-koriste" style="bottom: 80px; right: 100px;">✦</div>
+    <div class="paaosa">
 
-    <div class="studio-säiliö">
-        
-        <div class="kuvaus-puoli">
-            <div class="status-rivi">
-                <div class="layout-status" id="layout-title">Selected layout: Loading...</div>
-                
-                <div class="ajastin-valinta-palkki">
-                    <label for="timer-select">Timer:</label>
-                    <select id="timer-select">
-                        <option value="3">3s</option>
-                        <option value="5">5s</option>
-                        <option value="10">10s</option>
-                    </select>
-                </div>
-            </div>
-            
+        <div class="kamera-sarake">
+            <div class="musta-laatikko" id="layout-teksti">Selected layout:<br>Layout A (4 pose)</div>
+
             <div class="kamera-ruutu">
-                <video id="webcam" autoplay playsinline></video>
-                <div id="countdown-overlay">3</div>
+                <video id="video" autoplay playsinline muted></video>
+                <div class="viesti" id="viesti">Starting camera...</div>
+                <div class="lasku" id="lasku"></div>
             </div>
 
-            <div class="ajastin-palkki">Time to pose: <span id="timer-number">--</span></div>
-            
-            <button class="start-nappi" id="start-btn" onclick="kaynnistaKuvaus()">Start Capture</button>
+            <div>
+                <span class="musta-laatikko">Time to pose:</span>
+                <button class="aika-nappi valittu" id="aika-3" onclick="valitseAika(3)">3s</button>
+                <button class="aika-nappi" id="aika-5" onclick="valitseAika(5)">5s</button>
+            </div>
+
+            <div>
+                <button class="valkoinen-nappi" id="aloita-nappi" onclick="aloitaKuvaus()" disabled>Start Capture<br>(4 photos)</button>
+                <button class="musta-nappi" id="next-nappi" onclick="seuraava()" disabled>Next</button>
+            </div>
         </div>
 
-        <div class="kuvanauha-puoli" id="preview-container"></div>
+        <div class="pikkukuvat">
+            <div class="pikkukuva" id="kuva0">1</div>
+            <div class="pikkukuva" id="kuva1">2</div>
+            <div class="pikkukuva" id="kuva2">3</div>
+            <div class="pikkukuva" id="kuva3">4</div>
+        </div>
 
     </div>
 
-    <canvas id="hidden-canvas" width="640" height="480"></canvas>
+    <canvas id="canvas" style="display:none;"></canvas>
 
     <script>
-        const video = document.getElementById('webcam');
-        const canvas = document.getElementById('hidden-canvas');
-        const startBtn = document.getElementById('start-btn');
-        const countdownOverlay = document.getElementById('countdown-overlay');
-        const timerNumber = document.getElementById('timer-number');
-        const previewContainer = document.getElementById('preview-container');
-        const timerSelect = document.getElementById('timer-select');
+        var video = document.getElementById("video");
+        var canvas = document.getElementById("canvas");
+        var viesti = document.getElementById("viesti");
+        var lasku = document.getElementById("lasku");
+        var aloitaNappi = document.getElementById("aloita-nappi");
+        var nextNappi = document.getElementById("next-nappi");
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const valittuLayout = urlParams.get('layout') || 'A';
-        
-        let kuvienMaara = 4;
-        if (valittuLayout === 'B') kuvienMaara = 3;
-        if (valittuLayout === 'C') kuvienMaara = 2;
+        var kuvia = 4;
+        var valittuAika = 3;
+        var sekunnit = 0;
+        var kuvaNumero = 0;
+        var ajastin;
+        var otetutKuvat = [];
 
-        document.getElementById('layout-title').innerText = `Layout ${valittuLayout} (${kuvienMaara} pose)`;
-        startBtn.innerHTML = `Start Capture<br>(${kuvienMaara} photos)`;
+        // Layout osoitteesta: capture.html?layout=B
+        var haku = window.location.search;
+        var layoutNimi = "Layout A";
 
-        for (let i = 0; i < kuvienMaara; i++) {
-            const ruutu = document.createElement('div');
-            ruutu.className = 'otettu-kuva-ruutu';
-            ruutu.id = `ruutu-${i}`;
-            previewContainer.appendChild(ruutu);
+        if (haku == "?layout=B") {
+            kuvia = 3;
+            layoutNimi = "Layout B";
+        } else if (haku == "?layout=C") {
+            kuvia = 2;
+            layoutNimi = "Layout C";
         }
 
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
+        document.getElementById("layout-teksti").innerHTML = "Selected layout:<br>" + layoutNimi + " (" + kuvia + " pose)";
+        aloitaNappi.innerHTML = "Start Capture<br>(" + kuvia + " photos)";
+
+        for (var i = kuvia; i < 4; i++) {
+            document.getElementById("kuva" + i).style.display = "none";
+        }
+
+        navigator.mediaDevices.getUserMedia({ video: true })
             .then(function(stream) {
                 video.srcObject = stream;
+                viesti.style.display = "none";
+                aloitaNappi.disabled = false;
             })
-            .catch(function(error) {
-                alert("Please allow camera access to take photos :)");
+            .catch(function() {
+                viesti.innerHTML = "Camera blocked. Please allow the camera.";
             });
+
+        function valitseAika(aika) {
+            valittuAika = aika;
+            document.getElementById("aika-3").classList.remove("valittu");
+            document.getElementById("aika-5").classList.remove("valittu");
+            document.getElementById("aika-" + aika).classList.add("valittu");
         }
 
-        let nykyinenKuva = 0;
+        function aloitaKuvaus() {
+            otetutKuvat = [];
+            kuvaNumero = 0;
 
-        function kaynnistaKuvaus() {
-            startBtn.disabled = true;
-            timerSelect.disabled = true; 
-            nykyinenKuva = 0;
-            otetaanSeuraavaKuva();
-        }
-
-        function otetaanSeuraavaKuva() {
-            if (nykyinenKuva >= kuvienMaara) {
-                setTimeout(function() {
-                    alert("All photos captured! Moving to the next section...");
-                }, 1500);
-                return;
+            for (var i = 0; i < kuvia; i++) {
+                document.getElementById("kuva" + i).innerHTML = i + 1;
             }
 
-            let sekunnit = parseInt(timerSelect.value);
-            
+            aloitaNappi.disabled = true;
+            nextNappi.disabled = true;
+            aloitaLasku();
+        }
+
+        function aloitaLasku() {
+            sekunnit = valittuAika;
+            lasku.innerHTML = sekunnit;
+            lasku.style.display = "block";
+            ajastin = setInterval(laskeAlas, 1000);
+        }
+
+        function laskeAlas() {
+            sekunnit = sekunnit - 1;
+
+            if (sekunnit > 0) {
+                lasku.innerHTML = sekunnit;
+            } else {
+                clearInterval(ajastin);
+                lasku.style.display = "none";
+                otaKuva();
+                kuvaNumero = kuvaNumero + 1;
+
+                if (kuvaNumero < kuvia) {
+                    setTimeout(aloitaLasku, 1000);
+                } else {
+                    aloitaNappi.innerHTML = "Retake<br>(" + kuvia + " photos)";
+                    aloitaNappi.disabled = false;
+                    nextNappi.disabled = false;
+                }
+            }
+        }
+
+        function otaKuva() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            var ctx = canvas.getContext("2d");
+            ctx.translate(canvas.width, 0);
+            ctx.scale(-1, 1);
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            var kuva = canvas.toDataURL("image/jpeg");
+            otetutKuvat.push(kuva);
+            document.getElementById("kuva" + kuvaNumero).innerHTML = '<img src="' + kuva + '">';
+        }
+
+        // Next
+        function seuraava() {
+            sessionStorage.setItem("posemoment-kuvat", JSON.stringify(otetutKuvat));
+            window.location.href = "result.html";
+        }
+    </script>
+</body>
+</html>
