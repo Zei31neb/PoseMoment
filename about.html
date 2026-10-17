@@ -10,7 +10,7 @@
           margin: 0;
           padding: 20px;
           background-color: #ffd2e1;
-          font-family: Playfair Display;
+          font-family: 'Playfair Display', serif;
           display: flex;
           flex-direction: column;  
           align-items: center;     
@@ -24,19 +24,13 @@
           margin-top: 10px;
           margin-bottom: 40px; 
           position: relative; 
-          min-height: 90px;  
-        }
-
-        .ylapalkki-logo-laatikko {
-          position: absolute;
-          left: 0;
-          display: flex;
-          align-items: center;
+          min-height: 60px;  
         }
 
         .ylapalkki-logo {
-          width: 100%;
-          max-width: 220px;
+          position: absolute;
+          left: 0;
+          max-width: 180px;
           height: auto;
           display: block;
         }
@@ -73,7 +67,7 @@
         }
 
         .sisalto-laatikko {
-          max-width: 900px;
+          max-width: 800px;
           width: 100%;
           padding: 0 20px;
           box-sizing: border-box;
@@ -81,59 +75,60 @@
         }
 
         h1 {
-          font-size: 42px;
+          font-size: 32px;
           text-align: center;
           letter-spacing: 2px;
-          margin-bottom: 30px;
+          margin-bottom: 25px;
           font-weight: bold;
-          font-family: Playfair Display;
         }
 
         h2 {
-           font-size: 34px;
+          font-size: 26px; 
           text-align: center;
           letter-spacing: 2px;
-          margin-bottom: 30px;
+          margin-top: 40px;
+          margin-bottom: 25px;
           font-weight: bold;
-          font-family: Playfair Display;
         }
 
         p {
-          font-size: 22px;
+          font-size: 18px; 
           text-align: center; 
           line-height: 1.6;
           margin-bottom: 30px;
-          letter-spacing: 1px;
+          letter-spacing: 0.5px;
         }
 
         ul {
           list-style-type: none; 
           padding: 0;
-          margin: 0;
+          margin: 0 auto;
+          max-width: 600px; 
         }
 
         ul li {
-          font-size: 30px;
+          font-size: 18px;
           line-height: 1.6;
-          letter-spacing: 1px;
-          margin-bottom: 10px;
+          letter-spacing: 0.5px;
+          margin-bottom: 12px;
           text-align: left;
         }
 
         @media screen and (max-width: 1150px) {
-          body{
+          body {
             padding: 15px;
           }
-            
           
           .ylapalkki-säiliö {
-           flex-direction: column !important; 
-           gap: 15px;
-           margin-bottom: 20px !important;
+            flex-direction: column !important; 
+            gap: 15px;
+            margin-bottom: 20px !important;
           }
 
           .ylapalkki-logo {
-          max-width: 180px;
+            position: static; 
+            max-width: 150px;
+            margin: 0 auto;
           }
 
           .kapseli-valikko {
@@ -150,13 +145,18 @@
           }
           
           h1 {
+            font-size: 24px !important;
+          }
+
+          h2 {
             font-size: 20px !important;
           }
 
-          p {
-            font-size: 10px !important;
+          p, ul li {
+            font-size: 14px !important;
             line-height: 1.5;
           }
+        }
     </style>
 </head>
 <body>
@@ -178,7 +178,7 @@
         
         <p><strong><em>PoseMoment</em></strong> was born from the need to create a simple, fun way to take photos directly in your browser. I wanted to design a digital photobooth that works entirely app-free and is easy for everyone to use — from youth and adults to content creators and event organizers.</p>
 
-        <h1 style="margin-top: 50px;"><em>How it works is simple:</em></h1>
+        <h2><em>How it works is simple:</em></h2>
         
         <ul>
             <li><em>1. Choose a layout</em></li>
@@ -191,3 +191,4 @@
     </div>
 </body>
 </html>
+
