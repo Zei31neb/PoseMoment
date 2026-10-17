@@ -251,14 +251,47 @@
         <div class="tahti-koriste">✦<br>✦<br>✦</div>
     </div>
 
+     <div class="layout-sarake">
+            <div class="filminauha" id="nauha-A">
+                <div class="ruutu"></div>
+                <div class="ruutu"></div>
+                <div class="ruutu"></div>
+                <div class="ruutu"></div>
+                <div class="filmi-teksti">Layout A<br>4 Pose</div>
+            </div>
+            <button class="musta-nappi" onclick="valitsePohja('Layout A (4 pose)', 4, 'nauha-A')">CHOOSE</button>
+        </div>
+
+        <div class="layout-sarake">
+            <div class="filminauha" id="nauha-B">
+                <div class="ruutu"></div>
+                <div class="ruutu"></div>
+                <div class="ruutu"></div>
+                <div class="filmi-teksti">Layout B<br>3 Pose</div>
+            </div>
+            <button class="musta-nappi" onclick="valitsePohja('Layout B (3 pose)', 3, 'nauha-B')">CHOOSE</button>
+        </div> 
+
+        <div class="layout-sarake">
+            <div class="filminauha" id="nauha-C">
+                <div class="ruutu"></div>
+                <div class="ruutu"></div>
+                <div class="filmi-teksti">Layout C<br>2 Pose</div>
+            </div>
+            <button class="musta-nappi" onclick="valitsePohja('Layout C (2 pose)', 2, 'nauha-C')">CHOOSE</button>
+        </div>
+
     <script>
-        function valitsePohja(nauhaId) {
+        function valitsePohja(layoutNimi, kuvienMaara, nauhaId) {
             document.querySelectorAll('.filminauha').forEach(function(nauha) {
                 nauha.classList.remove('valittu-nauha');
             });
             document.getElementById(nauhaId).classList.add('valittu-nauha');
-            alert("Layout selected! The photobooth feature will open soon :)");
-        }
+            
+            localStorage.setItem("valittuLayout", layoutNimi);
+            localStorage.setItem("kuvienMaara", kuvienMaara);
+            
+            window.location.href = "capture.html";
     </script>
 </body>
 </html>
