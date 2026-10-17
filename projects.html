@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoseMoment - Projects</title>
     
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    
     <style>
         body {
           margin: 0;
           padding: 20px;
           background-color: #ffd2e1;
-          font-family: 'Playfair Display', serif;
+          font-family: Playfair Display;
           display: flex;
           flex-direction: column;  
           align-items: center;     
@@ -22,28 +18,21 @@
 
         .ylapalkki-säiliö {
           display: flex;
-          justify-content: center;
-          align-items: center;     
-          width: 100%;
-          max-width: 1200px;       
-          margin-top: 10px;
-          margin-bottom: 40px;
-          position: relative; 
-          box-sizing: border-box;
-        }
-
-        .ylapalkki-logo-laatikko {
-          position: absolute;
-          left: 0; 
-          display: flex;
+          justify-content: center; 
           align-items: center;
+          width: 100%;             
+          margin-top: 10px;
+          margin-bottom: 15px;  
+          position: relative;
         }
 
         .ylapalkki-logo {
-          width: 100%;
-          max-width: 220px; 
+          position: absolute;
+          left: 0;
+          max-width: 280px;
           height: auto;
           display: block;
+          margin-top: 40px;
         }
 
         .kapseli-valikko {
@@ -81,7 +70,7 @@
         .infoteksti {
           font-size: 26px;      
           text-align: center;
-          margin-top: 20px; 
+          margin-top: 60px; 
           margin-bottom: 40px;
           letter-spacing: 2px; 
           max-width: 1100px;
@@ -152,7 +141,7 @@
           color: #ffffff;
           border: none;
           padding: 10px 25px;  
-          font-family: 'Playfair Display', serif;
+          font-family: Playfair Display;
           font-size: 20px;     
           letter-spacing: 2px;
           cursor: pointer;
@@ -170,18 +159,15 @@
           
           .ylapalkki-säiliö {
             flex-direction: column !important; 
-            position: static !important;
             gap: 15px;
             margin-bottom: 20px !important;
           }
 
-          .ylapalkki-logo-laatikko {
-            position: static !important;
-            margin: 0 auto !important;
-          }
-
           .ylapalkki-logo {
+            position: static !important; 
             max-width: 150px;
+            margin: 0 auto !important;
+            margin-top: 0 !important;
           }
 
           .kapseli-valikko {
@@ -216,9 +202,7 @@
 <body>
     
     <div class="ylapalkki-säiliö">
-        <div class="ylapalkki-logo-laatikko">
-            <img src="Logo.jpg" alt="PoseMoment" class="ylapalkki-logo">
-        </div>
+        <img src="Logo.jpg" alt="PoseMoment" class="ylapalkki-logo">
         
         <nav class="kapseli-valikko">
           <a href="index.html">Home</a>
@@ -269,21 +253,12 @@
 
     <script>
         function valitsePohja(nauhaId) {
-            var kuvienMaara = 4; 
-            var layoutNimi = "Layout A (4 pose)";
-
-            if (nauhaId === 'nauha-B') {
-                kuvienMaara = 3;
-                layoutNimi = "Layout B (3 pose)";
-            } else if (nauhaId === 'nauha-C') {
-                kuvienMaara = 2;
-                layoutNimi = "Layout C (2 pose)";
-            }
-
-            localStorage.setItem("valittuLayout", layoutNimi);
-            localStorage.setItem("kuvienMaara", kuvienMaara);
+            document.querySelectorAll('.filminauha').forEach(function(nauha) {
+                nauha.classList.remove('valittu-nauha');
+            });
+            document.getElementById(nauhaId).classList.add('valittu-nauha');
             
-            window.location.href = "capture.html";
+            alert("Layout selected! The photobooth feature will open soon :)");
         }
     </script>
 </body>
