@@ -98,6 +98,9 @@
           background-color: #ffffff;
           border: 1px solid #000000;
           overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         .kamera-ruutu video {
@@ -105,14 +108,23 @@
           height: 100%;
           object-fit: cover;
           transform: scaleX(-1);
+          display: block;
         }
 
         .viesti {
           position: absolute;
-          top: 45%;
+          top: 0;
+          left: 0;
           width: 100%;
-          text-align: center;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           font-size: 20px;
+          background-color: #ffffff;
+          z-index: 4;
+          gap: 15px;
         }
 
         .lasku {
@@ -130,7 +142,6 @@
           z-index: 5;
         }
 
-        /* Kameran välähdysefekti */
         .valahdys {
           position: absolute;
           top: 0;
@@ -217,6 +228,18 @@
           transform: scaleX(-1);
         }
 
+        /* Kameran aktivointipainike jos selain blokkaa automaation */
+        .aktivoi-kamera-nappi {
+          background-color: #000000;
+          color: #ffffff;
+          border: none;
+          padding: 10px 20px;
+          font-family: Playfair Display;
+          font-size: 16px;
+          cursor: pointer;
+          letter-spacing: 1px;
+        }
+
         @media screen and (max-width: 1150px) {
           body {
             padding: 15px;
@@ -289,7 +312,11 @@
         <div class="kamera-sarake">
             <div class="kamera-ruutu">
                 <video id="video" autoplay playsinline muted></video>
-                <div class="viesti" id="viesti">Starting camera...</div>
+                <div class="viesti" id="viesti">
+                    <span id="viesti-teksti">Starting camera...</span>
+                    <!-- Tämä painike ilmestyy jos selain vaatii manuaalisen klikkauksen lupaa varten -->
+                    <button class="aktivoi-kamera-nappi" id="lupa-nappi" onclick="kaynnistaKamera()" style="display:none;">Enable Camera</button>
+                </div>
                 <div class="lasku" id="lasku"></div>
                 <div class="valahdys" id="valahdys"></div>
             </div>
@@ -321,6 +348,8 @@
         var video = document.getElementById("video");
         var canvas = document.getElementById("canvas");
         var viesti = document.getElementById("viesti");
+        var viestiTeksti = document.getElementById("viesti-teksti");
+        var lupaNappi = document.getElementById("lupa-nappi");
         var lasku = document.getElementById("lasku");
         var valahdys = document.getElementById("valahdys");
         var aloitaNappi = document.getElementById("aloita-nappi");
@@ -331,32 +360,9 @@
         var kuvaNumero = 0;
         var kuvatutDataUrlit = [];
 
+        aloitaNappi.innerHTML = "Start Capture";
+
         for (var i = 0; i < 4; i++) {
             var kuvaElementti = document.getElementById("kuva" + i);
             if (kuvaElementti) {
                 if (i < kuvia) {
-                    kuvaElementti.style.display = "block";
-                } else {
-                    kuvaElementti.style.display = "none";
-                }
-            }
-        }
-
-        navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 400 }, audio: false })
-            .then(function(stream) {
-                video.srcObject = stream;
-                viesti.style.display = "none";
-                aloitaNappi.disabled = false;
-            })
-            .catch(function(err) {
-                viesti.innerHTML = "Camera error: Please allow camera access.";
-                console.log(err);
-            });
-
-        function valitseAika(sekunnit) {
-            kuvausaika = sekunnit;
-            document.getElementById("aika-3").classList.remove("valittu");
-            document.getElementById("aika-5").classList.remove("valittu");
-            document.getElementById("aika-" + sekunnit).classList.add("valittu");
-        }
-
