@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoseMoment - Capture</title>
+    
+    <style>
+        body {
+          margin: 0;
+          padding: 20px;
+          background-color: #ffd2e1;
+          font-family: Playfair Display, serif;
+          display: flex;
+          flex-direction: column;  
+          align-items: center;     
+        }
+
+        .ylapalkki-säiliö {
+          display: flex;
+          justify-content: center; 
+          align-items: center;
+          width: 100%;             
+          margin-top: 10px;
+          margin-bottom: 15px;  
+          position: relative; 
+        }
+
+        .ylapalkki-logo {
+          position: absolute;
+          left: 0;
+          max-width: 280px;
+          height: auto;
+          display: block;
+          margin-top: 40px;
+        }
+
+        .kapseli-valikko {
+          display: inline-flex;
+          border: 2px solid #000000;
+          border-radius: 30px;
+          overflow: hidden;
+          background-color: #ffffff;
+          padding: 0;
+          margin: 0;
+          z-index: 10;
+        }
+
+        .kapseli-valikko a {
+          display: block;
+          padding: 10px 24px; 
+          color: #000000;
+          text-decoration: none;
+          font-size: 18px; 
+          font-weight: 500;
+          letter-spacing: 2px;
+          text-align: center;
+          border-right: 2px solid #000000; 
+        }
+
+        .kapseli-valikko a:last-child {
+          border-right: none;
+        }
+
+        .studio-säiliö {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 60px;
+          max-width: 1200px;
+          width: 100%;
+          margin-top: 70px;
+          position: relative;
+        }
+
+        .kuvaus-puoli {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .layout-status {
+          background-color: #000000;
+          color: #ffffff;
+          padding: 6px 20px;
+          font-size: 16px;
+          letter-spacing: 1px;
+          margin-bottom: 15px;
+        }
+
+        .kamera-ruutu {
+          width: 500px;
+          height: 375px;
+          border: 2px solid #000000;
+          background-color: #ffffff;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 4px 4px 0px #000000;
+        }
+
+        #webcam {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        #countdown-overlay {
+          position: absolute;
+          font-size: 90px;
+          font-weight: bold;
+          color: #000000;
+          display: none;
+          z-index: 5;
+        }
+
+        .ajastin-palkki {
+          background-color: #000000;
+          color: #ffffff;
+          padding: 8px 25px;
+          font-size: 18px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          letter-spacing: 1px;
+          display: flex;
+          align-items: center;
+        }
+
+        .ajastin-palkki span {
+          background-color: #ffffff;
+          color: #000000;
+          padding: 2px 12px;
+          margin-left: 15px;
+          font-weight: bold;
+          border: 1px solid #000000;
+        }
+
+        .start-nappi {
+          background-color: #ffffff;
+          color: #000000;
+          border: 2px solid #000000;
+          border-radius: 20px;
+          padding: 12px 45px;
+          font-family: Playfair Display, serif;
+          font-size: 18px;
+          cursor: pointer;
+          box-shadow: 4px 4px 0px #000000;
+          transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .start-nappi:hover {
+          background-color: #f0f0f0;
+        }
+
+        .kuvanauha-puoli {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          width: 140px;
+        }
+
+        .otettu-kuva-ruutu {
+          width: 140px;
+          height: 105px;
+          border: 2px solid #000000;
+          background-color: #ffffff;
+          overflow: hidden;
+          box-shadow: 3px 3px 0px #000000;
+        }
+
+        .tahti-koriste {
+          font-size: 60px;
+          color: #707070;
+          position: absolute;
+          user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ylapalkki-säiliö">
+        <img src="Logo.jpg" alt="PoseMoment" class="ylapalkki-logo">
+        <nav class="kapseli-valikko">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="skills.html">Skills</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <div class="tahti-koriste" style="top: 280px; left: 80px;">✦</div>
+    <div class="tahti-koriste" style="top: 200px; right: 350px;">✦</div>
+    <div class="tahti-koriste" style="bottom: 80px; right: 100px;">✦</div>
+
+    <div class="studio-säiliö">
+        
+        <div class="kuvaus-puoli">
+            <div class="layout-status" id="layout-title">Selected layout: Layout A (4 pose)</div>
+            
+            <div class="kamera-ruutu">
+                <video id="webcam" autoplay playsinline></video>
+                <div id="countdown-overlay">3</div>
+            </div>
+
+            <div class="ajastin-palkki">Time to pose: <span id="timer-number">3</span></div>
+            
+            <button class="start-nappi" id="start-btn">Start Capture<br>(4 photos)</button>
+        </div>
+
+        <div class="kuvanauha-puoli" id="preview-container">
+            <div class="otettu-kuva-ruutu"></div>
+            <div class="otettu-kuva-ruutu"></div>
+            <div class="otettu-kuva-ruutu"></div>
+            <div class="otettu-kuva-ruutu"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
